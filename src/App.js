@@ -8,6 +8,7 @@ import Music from "./components/Music/Music";
 import News from "./components/News/News";
 import Settings from "./components/Settings/Settings";
 
+
 const App = (props) => {
     return (
 
@@ -16,7 +17,7 @@ const App = (props) => {
             <Navbar/>
             <div className="app-wrapper-content">
                 <Route path="/profile"
-                       render={() => <Profile state={props.state.profilePage}/>}/>
+                       render={() => <Profile state={props.state.profilePage} addPost={props.addPost}/>}/>
                 <Route path="/dialogues"
                        render={() => <Dialogues state={props.state.dialogsPage}/>}/>
                 <Route path="/music" render={() => <Music/>}/>
