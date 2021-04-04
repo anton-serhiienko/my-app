@@ -69,29 +69,6 @@ let mapStateToProps = (state) => {
     }
 }
 
-// let mapDispatchToProps = (dispatch) => {
-//     return {
-//         follow: (userId) => {
-//             dispatch(followAC(userId))
-//         },
-//         unfollow: (userId) => {
-//             dispatch(unfollowAC(userId))
-//         },
-//         setUsers: (users) => {
-//             dispatch(setUsersAC(users))
-//         },
-//         setCurrentPage: (page) => {
-//             dispatch(setCurrentPageAC(page))
-//         },
-//         setTotalUsersCount: (usersNumber) => {
-//             dispatch(setTotalUsersCountAC(usersNumber))
-//         },
-//         toggleIsLoading: (isLoading) => {
-//             dispatch(toggleIsLoadingAC(isLoading))
-//         },
-//     }
-// }
-
 const UsersContainer = connect(mapStateToProps, {
     follow, setCurrentPage, setUsers, unfollow, setTotalUsersCount, toggleIsLoading
 })(UsersAPIComponent)
