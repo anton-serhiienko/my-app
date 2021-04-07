@@ -20,7 +20,7 @@ export const UsersAPI = {
 
 export const followAPI = {
     unfollowUser(id, unfollow) {
-        instance.delete(`follow/${id}`)
+        return instance.delete(`follow/${id}`)
             .then(response => {
                 if (response.data.resultCode === 0) {
                     unfollow(id);
@@ -29,7 +29,7 @@ export const followAPI = {
     },
 
     followUser(id, follow) {
-        instance.post(`follow/${id}`)
+        return instance.post(`follow/${id}`)
             .then(response => {
                 if (response.data.resultCode === 0) {
                     follow(id);
@@ -40,7 +40,7 @@ export const followAPI = {
 
 export const authAPI = {
     authUser(setAuthUserData) {
-        instance.get(`auth/me`)
+        return instance.get(`auth/me`)
             .then(response => {
                     if (response.data.resultCode === 0) {
                         let {id, email, login} = response.data.data;
