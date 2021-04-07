@@ -7,21 +7,16 @@ import {
 import {connect} from "react-redux";
 import Users from "./Users";
 import Preloader from "../../common/preloader/Preloader";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
-class UsersAPIComponent extends React.Component {
+class UsersContainer extends React.Component {
     componentDidMount() {
         this.props.getUsers(this.props.currentPage,this.props.pageSize);
     }
 
     onPageChanged = (pageNumber) => {
         this.props.getUsers(pageNumber,this.props.pageSize);
-        // this.props.toggleIsLoading(true);
-        // this.props.setCurrentPage(pageNumber)
-        // UsersAPI.getUsers(pageNumber,this.props.pageSize)
-        //     .then(data => {
-        //         this.props.toggleIsLoading(false);
-        //         this.props.setUsers(data.items);
-        //     })
     }
 
     render() {
@@ -51,9 +46,12 @@ let mapStateToProps = (state) => {
     }
 }
 
-const UsersContainer = connect(mapStateToProps, {
-    unfollow, setCurrentPage,
-    follow, toggleFollowingProgress, getUsers
-})(UsersAPIComponent)
+export default compose(
+    connect(mapStateToProps, {
+        unfollow, setCurrentPage,
+        follow, toggleFollowingProgress, getUsers}),
+    withAuthRedirect)
+(UsersContainer)
 
-export default UsersContainer;
+
+
