@@ -1,6 +1,7 @@
 import React from "react";
 import css from "./ProfileInfo.module.css";
 import Preloader from "../../../common/preloader/Preloader";
+import ProfileStatus from "./ProfileStatus"
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -9,17 +10,13 @@ const ProfileInfo = (props) => {
 
     return (
         <div>
-            <div>
-                <img
-                    src="https://images.ctfassets.net/hrltx12pl8hq/7yQR5uJhwEkRfjwMFJ7bUK/dc52a0913e8ff8b5c276177890eb0129/offset_comp_772626-opt.jpg?fit=fill&w=800&h=300"/>
-            </div>
             <div className={css.avaAndInfo}>
                 <div>
                     <img src={props.profile.photos.large}/>
                 </div>
                 <div>
                     <div className={css.profileName}>{props.profile.fullName}</div>
-                    <div className={css.profileStatus}>Status: {props.profile.aboutMe}</div>
+                    <ProfileStatus status={props.profile.aboutMe}/>
                 </div>
             </div>
             <div>
@@ -38,14 +35,6 @@ const ProfileInfo = (props) => {
                     {props.profile.contacts.youtube!=null?<div><a href={props.profile.contacts.youtube}>youtube</a></div>:""}
                     {props.profile.contacts.github!=null?<div><a href={`https://${props.profile.contacts.github}`}>github</a></div>:""}
                     {props.profile.contacts.mainlink!=null?<div><a href={props.profile.contacts.mainlink}>mainlink</a></div>:""}
-
-                    {/*<div>website: {props.profile.contacts.website}</div>*/}
-                    {/*<div>vk: {props.profile.contacts.vk}</div>*/}
-                    {/*<div>twitter: {props.profile.contacts.twitter}</div>*/}
-                    {/*<div>instagram: {props.profile.contacts.instagram}</div>*/}
-                    {/*<div>youtube: {props.profile.contacts.youtube}</div>*/}
-                    {/*<div>github: {props.profile.contacts.github}</div>*/}
-                    {/*<div>mainlink: {props.profile.contacts.mainlink}</div>*/}
                 </div>
             </div>
         </div>
