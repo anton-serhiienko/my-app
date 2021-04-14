@@ -5,9 +5,17 @@ import React from 'react';
 
 class ProfileStatus extends React.Component {
     state = {
-        editMode: false,
-        status: this.props.status
+        editMode: false
     }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(prevProps.status !== this.props.status){
+            this.setState({
+                status: this.props.status
+            })
+        }
+    }
+
 
     activateEditMode =()=> {
         this.setState({
