@@ -32,6 +32,12 @@ export const followAPI = {
 export const authAPI = {
     authUser() {
         return instance.get(`auth/me`)
+    },
+    authLogIn(email, password, rememberMe=false){
+        return instance.post(`auth/login`,{email, password, rememberMe})
+    },
+    authLogOut(){
+        return instance.delete(`auth/login`)
     }
 }
 
