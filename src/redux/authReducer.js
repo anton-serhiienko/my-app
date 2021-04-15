@@ -4,7 +4,7 @@ const SET_USER_DATA = "SET_USER_DATA";
 const TOGGLE_IS_LOADING = "TOGGLE_IS_LOADING";
 
 let initialState = {
-    "userId": null,
+    "id": null,
     "login": null,
     "email": null,
     isLoading: false,
@@ -26,15 +26,15 @@ const authReducer = (state = initialState, action) => {
     }
 }
 
-export const setAuthUserData = (userId, email, login, isAuth) => ({type: SET_USER_DATA, data:{userId, email, login, isAuth}})
+export const setAuthUserData = (id, email, login, isAuth) => ({type: SET_USER_DATA, data:{id, email, login, isAuth}})
 
 export const verifyAuth = () => {
     return (dispatch) => {
         authAPI.authUser()
             .then(response => {
                 if (response.data.resultCode === 0) {
-                    let {userId, email, login} = response.data.data;
-                    dispatch(setAuthUserData(userId, email, login, true))
+                    let {id, email, login} = response.data.data;
+                    dispatch(setAuthUserData(id, email, login, true))
                 }
             }
         )
