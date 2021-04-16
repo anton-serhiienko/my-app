@@ -20,37 +20,33 @@ const authReducer = (state = initialState, action) => {
                 ...action.data
             }
         case TOGGLE_IS_LOADING:
-            return{...state, isLoading: action.isLoading}
+            return {...state, isLoading: action.isLoading}
         default:
             return state;
     }
 }
 
-export const setAuthUserData = (id, email, login, isAuth) => ({type: SET_USER_DATA, data:{id, email, login, isAuth}})
+export const setAuthUserData = (id, email, login, isAuth) => ({type: SET_USER_DATA, data: {id, email, login, isAuth}})
 
-export const verifyAuth = () => {
-    return (dispatch) => {
-        authAPI.authUser()
-            .then(response => {
+export const verifyAuth = () => (dispatch) => {
+    return authAPI.authUser()
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                let {id, email, login} = response.data.data;
+                dispatch(setAuthUserData(id, email, login, true))
+            }
+        });
+}
+
+export const login = (email, password, rememberMe) => (dispatch) => {
+    authAPI.authLogIn(email, password, rememberMe)
+        .then(response => {
                 if (response.data.resultCode === 0) {
-                    let {id, email, login} = response.data.data;
-                    dispatch(setAuthUserData(id, email, login, true))
+                    dispatch(verifyAuth())
                 }
             }
         )
-    }
-}
 
-export const login = (email, password, rememberMe) => {
-    return (dispatch) => {
-        authAPI.authLogIn(email, password, rememberMe)
-            .then(response => {
-                    if (response.data.resultCode === 0) {
-                        dispatch(verifyAuth())
-                    }
-                }
-            )
-    }
 }
 
 export const logout = () => {
@@ -64,5 +60,6 @@ export const logout = () => {
             )
     }
 }
+
 
 export default authReducer;
