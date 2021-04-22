@@ -1,18 +1,20 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import css from "./MyPosts.module.css"
 import Post from "./Post/Post";
 
 
 const MyPosts = (props) => {
+
+    let [text, setText] = useState("");
     let postElements = props.posts.map( p => <Post message={p.message} likeCount ={p.likesCount}/>)
 
     let onPostChange = (e) =>{
-        let text = e.target.value;
-        props.updateNewPostText(text);
+        setText(e.currentTarget.value)
     }
 
     let onAddPost = () => {
-        props.addPost();
+        props.addPost(text);
+        setText("")
     }
 
     return(
@@ -20,7 +22,8 @@ const MyPosts = (props) => {
             My posts
             <div>
                 <textarea onChange={onPostChange}
-                          value={props.newPostText} />
+                          placeholder={"some text"}
+                          value={text}/>
 
                 <button onClick={ () => { onAddPost() }}>Add post</button>
             </div>

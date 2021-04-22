@@ -5,12 +5,13 @@ const ProfileStatusNonClass = (props) => {
     let [editMode, setEditMode] = useState(false);
     let [status, setStatus] = useState(props.status)
 
-    useEffect( () => {
-        setStatus(props.status)},[props.status]
+    useEffect(() => {
+            setStatus(props.status)
+        }, [props.status]
     )
 
     let activateEditMode = () => {
-            setEditMode(true);
+        setEditMode(true);
     }
 
     let deactivateEditMode = () => {
@@ -27,13 +28,17 @@ const ProfileStatusNonClass = (props) => {
         <div>
             {!editMode ?
                 <div>
-                        <span onDoubleClick={() => {activateEditMode()}}>
-                            Status: {props.status || "Your status"}</span>
+                    <span onDoubleClick={() => {
+                        activateEditMode()
+                    }}>
+                        Status: {props.status || "Your status"}</span>
                 </div>
                 :
                 <div>
                     <input onChange={onStatusChange}
-                           onBlur={() => {deactivateEditMode()}}
+                           onBlur={() => {
+                               deactivateEditMode()
+                           }}
                            autoFocus={true}
                            value={status}/>
                 </div>
