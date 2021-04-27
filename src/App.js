@@ -1,5 +1,6 @@
 import './App.css';
-import Navbar from "./components/Navbar/Navbar";
+import "bootstrap/dist/css/bootstrap.min.css"
+// import Navibar from "./components/Navbar/Navibar";
 import {BrowserRouter, Route} from "react-router-dom";
 import Music from "./components/Music/Music";
 import News from "./components/News/News";
@@ -30,7 +31,7 @@ class App extends React.Component {
 
             <div className="app-wrapper">
                 <HeaderContainer/>
-                <Navbar/>
+                {/*<Navibar/>*/}
                 <div className="app-wrapper-content">
                     <Route path="/profile/:userId?"
                            render={() => <ProfileContainer/>}/>
@@ -55,7 +56,7 @@ let mapStateToProps = (state) => ({
 
 let AppContainer = compose(withRouter,connect(mapStateToProps, {initializeApp}))(App);
 
-let NetworkJSApp = (props) =>{
+let NetworkJSApp = () =>{
     return (
         <BrowserRouter>
         <Provider store={store}>
