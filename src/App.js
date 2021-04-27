@@ -1,6 +1,6 @@
 import './App.css';
 import Navbar from "./components/Navbar/Navbar";
-import {Route} from "react-router-dom";
+import {BrowserRouter, Route} from "react-router-dom";
 import Music from "./components/Music/Music";
 import News from "./components/News/News";
 import Settings from "./components/Settings/Settings";
@@ -10,12 +10,12 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./Login/Login";
 import React from "react";
-import {connect} from "react-redux";
+import {connect, Provider} from "react-redux";
 import {initializeApp} from "./redux/appReducer";
 import {withRouter} from "react-router";
 import {compose} from "redux";
 import Preloader from "./common/preloader/Preloader";
-
+import store from "./redux/redux-store";
 
 class App extends React.Component {
     componentDidMount() {
@@ -53,4 +53,16 @@ let mapStateToProps = (state) => ({
     initialized: state.appPage.initialized
 })
 
-export default compose(withRouter,connect(mapStateToProps, {initializeApp}))(App);
+let AppContainer = compose(withRouter,connect(mapStateToProps, {initializeApp}))(App);
+
+let NetworkJSApp = (props) =>{
+    return (
+        <BrowserRouter>
+        <Provider store={store}>
+            <AppContainer />
+        </Provider>
+    </BrowserRouter>
+    )
+}
+
+export default NetworkJSApp

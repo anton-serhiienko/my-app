@@ -1,7 +1,7 @@
 import React from "react";
 import css from "./ProfileInfo.module.css";
 import Preloader from "../../../common/preloader/Preloader";
-import ProfileStatusNonClass from "./ProfileStatusNonClass";
+import ProfileStatus from "./ProfileStatus";
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -16,7 +16,7 @@ const ProfileInfo = (props) => {
                 </div>
                 <div>
                     <div className={css.profileName}>{props.profile.fullName}</div>
-                    <ProfileStatusNonClass status={props.status}
+                    <ProfileStatus status={props.status}
                                    updateStatus={props.updateStatus}/>
                 </div>
             </div>
