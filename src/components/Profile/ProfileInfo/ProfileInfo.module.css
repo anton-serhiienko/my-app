@@ -1,0 +1,13 @@
+.avaAndInfo{
+   padding: 10px;
+   display: flex;
+   flex-direction: row;
+   Justify-content: space-between;
+   width: 400px;
+}
+.avaAndInfo img{
+   width: 175px;
+}
+.profileName{
+   font-size: 24px;
+}
