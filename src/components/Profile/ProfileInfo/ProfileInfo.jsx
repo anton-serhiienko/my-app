@@ -2,17 +2,24 @@ import React from "react";
 import css from "./ProfileInfo.module.css";
 import Preloader from "../../../common/preloader/Preloader";
 import ProfileStatus from "./ProfileStatus";
+import userPhoto from "../../../assets/images/userPhoto.png"
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
         return <Preloader/>
     }
 
+    const onMainPhotoSelected = (e) =>{
+        if(e.target.files.length){
+            props.updatePhoto(e.target.files[0])
+        }
+    }
     return (
         <div>
             <div className={css.avaAndInfo}>
                 <div>
-                    <img src={props.profile.photos.large}/>
+                    <img src={props.profile.photos.large || userPhoto}/>
+                    {props.isOwner && <input type="file" onChange={onMainPhotoSelected}/>}
                 </div>
                 <div>
                     <div className={css.profileName}>{props.profile.fullName}</div>
