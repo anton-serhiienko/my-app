@@ -22,10 +22,6 @@ class UsersContainer extends React.Component {
         this.props.getUsers(this.props.currentPage,this.props.pageSize);
     }
 
-    onPageChanged = (pageNumber) => {
-        this.props.getUsers(pageNumber,this.props.pageSize);
-    }
-
     render() {
         return <>
             {this.props.isLoading ? <Preloader/>: null}
@@ -33,7 +29,7 @@ class UsersContainer extends React.Component {
                    pageSize={this.props.pageSize}
                    currentPage={this.props.currentPage}
                    users={this.props.users}
-                   onPageChanged={this.onPageChanged}
+                   getUsers={this.props.getUsers}
                    follow={this.props.follow}
                    unfollow={this.props.unfollow}
                    followingInProgress={this.props.followingInProgress}
