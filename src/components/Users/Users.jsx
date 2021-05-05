@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import Paginator from "../../common/Paginator/Paginator";
 import User from "./User";
 import Pagination from "react-js-pagination";
 
@@ -14,8 +13,6 @@ let Users = (props) => {
 
     return (
         <div>
-            {/*<Paginator totalItemsCount={props.totalUsersCount} pageSize={props.pageSize}*/}
-            {/*           currentPage={props.currentPage} onPageChanged={props.onPageChanged}/>*/}
 
             <Pagination activePage={activePage}
                         itemsCountPerPage={props.pageSize}
